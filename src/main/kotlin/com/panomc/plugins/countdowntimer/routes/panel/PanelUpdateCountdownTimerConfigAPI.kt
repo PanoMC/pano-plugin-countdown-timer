@@ -9,6 +9,7 @@ import com.panomc.plugins.countdowntimer.CountdownTimerPlugin
 import com.panomc.plugins.countdowntimer.config.CountdownTimerConfig
 import com.panomc.plugins.countdowntimer.log.UpdatedCountdownTimerConfigLog
 import com.panomc.plugins.countdowntimer.permission.ManageCountdownTimerPermission
+import com.panomc.plugins.license.LicenseGuard
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.validation.ValidationHandler
 import io.vertx.ext.web.validation.builder.Bodies
@@ -67,6 +68,9 @@ class PanelUpdateCountdownTimerConfigAPI(
             .build()
 
     override suspend fun handle(context: RoutingContext): Result {
+        // Anti-tamper: re-assert license at a critical write path.
+        LicenseGuard.assert(plugin)
+
         authProvider.requirePermission(ManageCountdownTimerPermission(), context)
 
         val body = context.body().asJsonObject()
