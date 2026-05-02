@@ -32,6 +32,10 @@ class CountdownTimerPlugin : PanoPlugin() {
         }
     }
 
+    override suspend fun verifyLicense() {
+        licenseClient.requireValidLicense()
+    }
+
     override suspend fun onEnable() {
         logger.info("Enabled Countdown Timer Plugin!")
     }
