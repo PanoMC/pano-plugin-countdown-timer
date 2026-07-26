@@ -454,8 +454,7 @@
 {/if}
 
 <script>
-  import {_} from '../../../main';
-  import {showToast} from '@panomc/sdk/toasts';
+  import { _, showSuccessToast, showErrorToast } from '../../../main';
   import ApiUtil from '@panomc/sdk/utils/api';
 
   export let addon;
@@ -548,10 +547,10 @@
       });
       config.backgroundImage = result.backgroundImage;
       initialConfig.backgroundImage = result.backgroundImage;
-      await showToast(`plugins.${addon.id}.toasts.bg-upload-success`);
+      await showSuccessToast(`plugins.${addon.id}.toasts.bg-upload-success`);
     } catch (err) {
       console.error('Failed to upload background', err);
-      await showToast(`plugins.${addon.id}.toasts.bg-upload-error`);
+      await showErrorToast(`plugins.${addon.id}.toasts.bg-upload-error`);
     } finally {
       uploadingBg = false;
     }
@@ -565,10 +564,10 @@
       });
       config.backgroundImage = '';
       initialConfig.backgroundImage = '';
-      await showToast(`plugins.${addon.id}.toasts.bg-delete-success`);
+      await showSuccessToast(`plugins.${addon.id}.toasts.bg-delete-success`);
     } catch (err) {
       console.error('Failed to delete background', err);
-      await showToast(`plugins.${addon.id}.toasts.bg-delete-error`);
+      await showErrorToast(`plugins.${addon.id}.toasts.bg-delete-error`);
     } finally {
       uploadingBg = false;
     }
@@ -584,10 +583,10 @@
       });
       addon.config = config;
       initialConfig = JSON.parse(JSON.stringify(config));
-      await showToast(`plugins.${addon.id}.toasts.save-success`);
+      await showSuccessToast(`plugins.${addon.id}.toasts.save-success`);
     } catch (e) {
       console.error('Failed to save countdown timer config', e);
-      await showToast(`plugins.${addon.id}.toasts.save-error`);
+      await showErrorToast(`plugins.${addon.id}.toasts.save-error`);
     } finally {
       saving = false;
     }
