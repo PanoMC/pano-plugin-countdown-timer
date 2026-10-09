@@ -1,5 +1,5 @@
 {#if config?.enabled && config.displayMode === 'PAGE'}
-  <div class="container py-5">
+  <div class="countdown-timer-countdown-timer-page container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="rounded-4 overflow-hidden position-relative" style="{containerStyle}">
@@ -7,7 +7,7 @@
           {#if config.backgroundImage}
             <div
               class="position-absolute top-0 start-0 w-100 h-100"
-              style="background-image: url(/api/countdown-timer/background/{config.backgroundImage}); background-size: cover; background-position: center; z-index: 0; {config.theme === 'BLUR' ? 'filter: blur(8px); transform: scale(1.1);' : ''}">
+              style="background-image: url(/api/plugins/pano-plugin-countdown-timer/background/{config.backgroundImage}); background-size: cover; background-position: center; z-index: 0; {config.theme === 'BLUR' ? 'filter: blur(8px); transform: scale(1.1);' : ''}">
             </div>
             <div
               class="position-absolute top-0 start-0 w-100 h-100"
@@ -19,14 +19,14 @@
             {#if config.showLogo && siteInfo}
               <div class="mb-4">
                 <img
-                  src="/api/websiteLogo?hash={siteInfo.websiteLogoHash}"
+                  src="/api/v1/website-logo?hash={siteInfo.websiteLogoHash}"
                   alt={siteInfo.websiteName}
                   style="max-height: {logoHeight}px; max-width: {logoHeight * 2.5}px; object-fit: contain;" />
               </div>
             {/if}
 
             {#if config.title}
-              <h1 class="display-5 fw-bold mb-3">{config.title}</h1>
+              <h1 class="countdown-timer-countdown-timer-page__title display-5 fw-bold mb-3">{config.title}</h1>
             {/if}
 
             {#if config.message}
@@ -44,7 +44,7 @@
                 minsLabel={$_('timer.minutes')}
                 secsLabel={$_('timer.seconds')} />
             {:else}
-              <div class="alert alert-success d-inline-block">
+              <div class="countdown-timer-countdown-timer-page__alert alert alert-success d-inline-block">
                 <i class="fa fa-check-circle me-2"></i>
                 {$_('timer.ended')}
               </div>
@@ -65,8 +65,12 @@
 
 <script>
     import {page} from '@panomc/sdk/svelte';
-    import {_} from '../../../main';
+    import { derived } from 'svelte/store';
+    import { _ as i18n } from '@panomc/sdk/utils/language';
     import CountdownDisplay from './CountdownDisplay.svelte';
+
+    // plugin translations: $_('key') reads plugins.pano-plugin-countdown-timer.key
+    const _ = derived(i18n, ($_fn) => (key, options) => $_fn(`plugins.pano-plugin-countdown-timer.${key}`, options));
 
     const browser = typeof window !== 'undefined';
 

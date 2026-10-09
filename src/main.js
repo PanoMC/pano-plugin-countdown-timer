@@ -1,7 +1,7 @@
 import {PanoPlugin, viewComponent} from '@panomc/sdk';
 import {derived} from 'svelte/store';
 import {_ as i18n} from '@panomc/sdk/utils/language';
-import ApiUtil from '@panomc/sdk/utils/api';
+import { api } from '@panomc/sdk/plugin-api';
 import { showToast } from '@panomc/sdk/toasts';
 
 const pluginId = 'pano-plugin-countdown-timer';
@@ -37,8 +37,8 @@ export default class CountdownTimerPlugin extends PanoPlugin {
         if (data.addon.id !== pluginId) return;
 
         try {
-          const config = await ApiUtil.get({
-            path: '/api/panel/countdown-timer/config',
+          const config = await api.panel.get({
+            path: '/config',
             request: event,
           });
           data.addon.config = config;
@@ -55,16 +55,12 @@ export default class CountdownTimerPlugin extends PanoPlugin {
       });
     } else {
       // Theme side - load config for countdown display
-      const countdownCoverComponent = viewComponent(() => import('./theme/components/view/CountdownTimerCover.svelte'));
-      const countdownPageComponent = viewComponent(() => import('./theme/components/view/CountdownTimerPage.svelte'));
-      const countdownSidebarComponent = viewComponent(() => import('./theme/components/view/CountdownTimerSidebar.svelte'));
-
       let registered = false;
 
       pano.ui.app.onLoad(async (data, event) => {
         try {
-          const config = await ApiUtil.get({
-            path: '/api/countdown-timer/config',
+          const config = await api.get({
+            path: '/config',
             request: event,
           });
           data.countdownTimerConfig = config;
@@ -77,7 +73,7 @@ export default class CountdownTimerPlugin extends PanoPlugin {
               const pagePath = config.pagePath || '/countdown';
               pano.ui.page.register({
                 path: pagePath,
-                component: countdownPageComponent,
+                view: 'countdown-timer:CountdownTimerPage',
               });
 
               if (config.enabled && config.showInNav) {
@@ -96,20 +92,9 @@ export default class CountdownTimerPlugin extends PanoPlugin {
         }
       });
 
-      // Register cover overlay at theme:top (same as cookies banner)
-      pano.ui.hook.register({
-        name: 'theme:top',
-        component: countdownCoverComponent,
-        skipLoad: true,
-      });
-
-      // Register countdown widget in home sidebar
-      pano.ui.sidebar.register({
-        sidebarId: 'home',
-        id: 'countdown-timer',
-        component: countdownSidebarComponent,
-        priority: 90,
-      });
+      // The cover overlay (hook theme:top) and the home sidebar widget (sidebar home, priority 90) are the views
+      // countdown-timer:CountdownTimerCover and countdown-timer:CountdownTimerSidebar: they mount by themselves
+      // (export const view in each file) and are blocks a theme can place with <PluginBlock>.
     }
   }
 

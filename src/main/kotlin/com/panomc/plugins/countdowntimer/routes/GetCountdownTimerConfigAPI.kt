@@ -9,14 +9,45 @@ import com.panomc.plugins.countdowntimer.config.TimerAction
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.validation.ValidationHandler
-import io.vertx.ext.web.validation.builder.ValidationHandlerBuilder
+import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
+import com.panomc.platform.schema.EndpointDoc
+import io.vertx.json.schema.common.dsl.Schemas.*
 
 @Endpoint
 class GetCountdownTimerConfigAPI(
     private val plugin: CountdownTimerPlugin,
 ) : Api() {
-    override val paths = listOf(Path("/api/countdown-timer/config", RouteType.GET))
+    override val paths = listOf(Path("/config", RouteType.GET))
+
+    override val doc = EndpointDoc(
+        summary = "The countdown settings: end date, texts, colours and where the countdown shows.",
+        tag = "countdown-timer",
+        response = objectSchema()
+            .requiredProperty("enabled", booleanSchema())
+            .requiredProperty("endDate", intSchema())
+            .requiredProperty("title", stringSchema())
+            .requiredProperty("message", stringSchema())
+            .requiredProperty("displayMode", stringSchema())
+            .requiredProperty("theme", stringSchema())
+            .requiredProperty("backgroundColor", stringSchema())
+            .requiredProperty("textColor", stringSchema())
+            .requiredProperty("gradientStart", stringSchema())
+            .requiredProperty("gradientEnd", stringSchema())
+            .requiredProperty("backgroundImage", stringSchema())
+            .requiredProperty("showLogo", booleanSchema())
+            .requiredProperty("logoSize", stringSchema())
+            .requiredProperty("showServerIp", booleanSchema())
+            .requiredProperty("countdownStyle", stringSchema())
+            .requiredProperty("actions", arraySchema().items(stringSchema()))
+            .requiredProperty("openingEffect", stringSchema())
+            .requiredProperty("pagePath", stringSchema())
+            .requiredProperty("showInNav", booleanSchema())
+            .requiredProperty("navLinkText", stringSchema())
+            .requiredProperty("showAdminLogin", booleanSchema())
+            .requiredProperty("coverDismissable", booleanSchema())
+            .requiredProperty("coverScope", stringSchema())
+    )
 
     private val configManager by lazy {
         plugin.pluginBeanContext.getBean(PluginConfigManager::class.java) as PluginConfigManager<CountdownTimerConfig>

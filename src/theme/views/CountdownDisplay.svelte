@@ -1,6 +1,6 @@
 {#if style === 'SIMPLE'}
   <!-- SIMPLE: Plain numbers with colon separators -->
-  <div class="d-flex justify-content-center align-items-start gap-3 {cssClass}" style="{wrapperStyle}">
+  <div class="countdown-timer-countdown-display d-flex justify-content-center align-items-start gap-3 {cssClass}" style="{wrapperStyle}">
     <div class="text-center">
       <div class="{numClass}" style="{numStyle}">{pad(days)}</div>
       <small class="text-uppercase" style="opacity: 0.75; {labelFontStyle}">{daysLabel}</small>
@@ -24,7 +24,7 @@
 
 {:else if style === 'BOXED'}
   <!-- BOXED: Numbers inside rounded boxes -->
-  <div class="d-flex justify-content-center gap-2 gap-md-3 {cssClass}" style="{wrapperStyle}">
+  <div class="countdown-timer-countdown-display d-flex justify-content-center gap-2 gap-md-3 {cssClass}" style="{wrapperStyle}">
     <div class="text-center rounded-3 p-2 p-md-3" style="{boxBg} min-width: {boxMinWidth};">
       <div class="{numClass}" style="{numStyle}">{pad(days)}</div>
       <small class="text-uppercase d-block mt-1" style="opacity: 0.75; {labelFontStyle}">{daysLabel}</small>
@@ -45,7 +45,7 @@
 
 {:else if style === 'CIRCULAR'}
   <!-- CIRCULAR: Numbers inside circles with ring borders -->
-  <div class="d-flex justify-content-center gap-2 gap-md-3 {cssClass}" style="{wrapperStyle}">
+  <div class="countdown-timer-countdown-display d-flex justify-content-center gap-2 gap-md-3 {cssClass}" style="{wrapperStyle}">
     <div class="d-flex flex-column align-items-center">
       <div class="rounded-circle d-flex align-items-center justify-content-center" style="{circleBorder} width: {circleSize}; height: {circleSize};">
         <span class="{numClass}" style="{numStyle}">{pad(days)}</span>
@@ -74,7 +74,7 @@
 
 {:else if style === 'MINIMAL'}
   <!-- MINIMAL: Just large numbers inline, no labels -->
-  <div class="d-flex justify-content-center align-items-center gap-2 {cssClass}" style="font-family: 'Courier New', monospace; {wrapperStyle}">
+  <div class="countdown-timer-countdown-display d-flex justify-content-center align-items-center gap-2 {cssClass}" style="font-family: 'Courier New', monospace; {wrapperStyle}">
     <span class="{numClass}" style="{numStyle}">{pad(days)}</span>
     <span class="{numClass}" style="opacity: 0.4; {numStyle}">:</span>
     <span class="{numClass}" style="{numStyle}">{pad(hours)}</span>
@@ -86,7 +86,7 @@
 
 {:else if style === 'SEPARATED'}
   <!-- SEPARATED: Each digit is a separate box (airport/train station style) -->
-  <div class="d-flex justify-content-center gap-1 gap-md-2 flex-wrap {cssClass}" style="{wrapperStyle}">
+  <div class="countdown-timer-countdown-display d-flex justify-content-center gap-1 gap-md-2 flex-wrap {cssClass}" style="{wrapperStyle}">
     {#each digitGroups as group, gi}
       {#if gi > 0}
         <div class="d-flex align-items-center px-1">

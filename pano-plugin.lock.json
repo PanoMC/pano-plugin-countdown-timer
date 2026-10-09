@@ -1,0 +1,101 @@
+{
+  "controllers": {},
+  "format": 1,
+  "views": {
+    "countdown-timer:CountdownDisplay": {
+      "classes": [
+        "countdown-timer-countdown-display"
+      ],
+      "contract": 1,
+      "hooks": [],
+      "props": {
+        "days": {
+          "required": false
+        },
+        "daysLabel": {
+          "required": false
+        },
+        "hours": {
+          "required": false
+        },
+        "hoursLabel": {
+          "required": false
+        },
+        "isDark": {
+          "required": false
+        },
+        "minsLabel": {
+          "required": false
+        },
+        "minutes": {
+          "required": false
+        },
+        "seconds": {
+          "required": false
+        },
+        "secsLabel": {
+          "required": false
+        },
+        "size": {
+          "required": false
+        },
+        "style": {
+          "required": false
+        }
+      },
+      "slots": []
+    },
+    "countdown-timer:CountdownTimerCover": {
+      "classes": [
+        "countdown-timer-countdown-timer-cover",
+        "countdown-timer-countdown-timer-cover__action",
+        "countdown-timer-countdown-timer-cover__title"
+      ],
+      "contract": 1,
+      "hooks": [],
+      "props": {},
+      "slots": []
+    },
+    "countdown-timer:CountdownTimerPage": {
+      "classes": [
+        "countdown-timer-countdown-timer-page",
+        "countdown-timer-countdown-timer-page__alert",
+        "countdown-timer-countdown-timer-page__title"
+      ],
+      "contract": 1,
+      "hooks": [],
+      "props": {},
+      "slots": []
+    },
+    "countdown-timer:CountdownTimerSidebar": {
+      "classes": [
+        "countdown-timer-countdown-timer-sidebar",
+        "countdown-timer-countdown-timer-sidebar__title"
+      ],
+      "contract": 1,
+      "hooks": [],
+      "props": {},
+      "slots": []
+    },
+    "countdown-timer:OpeningEffect": {
+      "classes": [
+        "countdown-timer-opening-effect",
+        "countdown-timer-opening-effect__particle",
+        "countdown-timer-opening-effect__particle-confetti",
+        "countdown-timer-opening-effect__particle-fireworks",
+        "countdown-timer-opening-effect__particle-sparkle"
+      ],
+      "contract": 1,
+      "hooks": [],
+      "props": {
+        "active": {
+          "required": false
+        },
+        "effectType": {
+          "required": false
+        }
+      },
+      "slots": []
+    }
+  }
+}

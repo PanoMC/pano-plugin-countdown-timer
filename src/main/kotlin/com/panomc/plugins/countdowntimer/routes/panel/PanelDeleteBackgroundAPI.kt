@@ -12,7 +12,7 @@ import com.panomc.plugins.countdowntimer.permission.ManageCountdownTimerPermissi
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.validation.ValidationHandler
-import io.vertx.ext.web.validation.builder.ValidationHandlerBuilder
+import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
 import java.io.File
 
@@ -20,7 +20,7 @@ import java.io.File
 class PanelDeleteBackgroundAPI(
     private val plugin: CountdownTimerPlugin,
 ) : PanelApi() {
-    override val paths = listOf(Path("/api/panel/countdown-timer/background", RouteType.DELETE))
+    override val paths = listOf(Path("/background", RouteType.DELETE))
 
     private val authProvider by lazy {
         plugin.applicationContext.getBean(AuthProvider::class.java)

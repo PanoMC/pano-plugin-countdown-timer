@@ -1,13 +1,13 @@
 {#if showCover}
   <div
     data-countdown-cover
-    class="vw-100 vh-100 position-fixed top-0 start-0 text-center"
+    class="countdown-timer-countdown-timer-cover vw-100 vh-100 position-fixed top-0 start-0 text-center"
     style="{coverStyle} z-index: 99999; color: {config.textColor || '#ffffff'};">
 
     {#if config.backgroundImage}
       <div
         class="position-absolute top-0 start-0 w-100 h-100"
-        style="background-image: url(/api/countdown-timer/background/{config.backgroundImage}); background-size: cover; background-position: center; z-index: -1; {config.theme === 'BLUR' ? 'filter: blur(8px); transform: scale(1.1);' : ''}">
+        style="background-image: url(/api/plugins/pano-plugin-countdown-timer/background/{config.backgroundImage}); background-size: cover; background-position: center; z-index: -1; {config.theme === 'BLUR' ? 'filter: blur(8px); transform: scale(1.1);' : ''}">
       </div>
     {/if}
 
@@ -15,7 +15,7 @@
     {#if config.showLogo && siteInfo}
       <div class="position-absolute w-100 d-flex justify-content-center" style="top: 5%; z-index: 1;">
         <img
-          src="/api/websiteLogo?hash={siteInfo.websiteLogoHash}"
+          src="/api/v1/website-logo?hash={siteInfo.websiteLogoHash}"
           alt={siteInfo.websiteName}
           style="max-height: {logoHeight}px; max-width: {logoHeight * 2.5}px; object-fit: contain;" />
       </div>
@@ -25,7 +25,7 @@
     <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100 p-4" style="position: relative; z-index: 1;">
       <div style="max-width: 700px;">
         {#if config.title}
-          <h1 class="display-4 fw-bold mb-3">{config.title}</h1>
+          <h1 class="countdown-timer-countdown-timer-cover__title display-4 fw-bold mb-3">{config.title}</h1>
         {/if}
 
         {#if config.message}
@@ -55,7 +55,7 @@
     {#if config.coverDismissable}
       <button
         type="button"
-        class="position-absolute btn"
+        class="countdown-timer-countdown-timer-cover__action position-absolute btn"
         style="top: 15px; right: 15px; z-index: 10; color: {config.textColor || '#ffffff'}; font-size: 1.5rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer;"
         use:dismissAction
         aria-label="Close">
@@ -86,11 +86,21 @@
 
 <OpeningEffect effectType={config?.openingEffect || 'NONE'} active={showEffect} />
 
+<script module>
+  // The full-screen cover before opening; mounts on the theme:top hook, or a theme places it with
+  // <PluginBlock id="countdown-timer:CountdownTimerCover" />. It reads the config the plugin put on the page data.
+  export const view = { hook: 'theme:top', skipLoad: true, block: true };
+</script>
+
 <script>
     import {page} from '@panomc/sdk/svelte';
-    import {_} from '../../../main';
+    import { derived } from 'svelte/store';
+    import { _ as i18n } from '@panomc/sdk/utils/language';
     import CountdownDisplay from './CountdownDisplay.svelte';
     import OpeningEffect from './OpeningEffect.svelte';
+
+    // plugin translations: $_('key') reads plugins.pano-plugin-countdown-timer.key
+    const _ = derived(i18n, ($_fn) => (key, options) => $_fn(`plugins.pano-plugin-countdown-timer.${key}`, options));
 
     const browser = typeof window !== 'undefined';
 

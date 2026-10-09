@@ -314,7 +314,7 @@
           {#if config.backgroundImage}
             <div class="mb-2">
               <img
-                src="/api/countdown-timer/background/{config.backgroundImage}"
+                src="/api/plugins/pano-plugin-countdown-timer/background/{config.backgroundImage}"
                 alt="Background"
                 class="img-thumbnail"
                 style="max-height: 120px; object-fit: cover;" />
@@ -455,7 +455,7 @@
 
 <script>
   import { _, showSuccessToast, showErrorToast } from '../../../main';
-  import ApiUtil from '@panomc/sdk/utils/api';
+  import { api } from '@panomc/sdk/plugin-api';
 
   export let addon;
 
@@ -540,8 +540,8 @@
       const formData = new FormData();
       formData.append('file', file);
 
-      const result = await ApiUtil.post({
-        path: '/api/panel/countdown-timer/background',
+      const result = await api.panel.post({
+        path: '/background',
         body: formData,
         headers: {},
       });
@@ -559,8 +559,8 @@
   async function deleteBackground() {
     uploadingBg = true;
     try {
-      await ApiUtil.delete({
-        path: '/api/panel/countdown-timer/background',
+      await api.panel.delete({
+        path: '/background',
       });
       config.backgroundImage = '';
       initialConfig.backgroundImage = '';
@@ -577,8 +577,8 @@
     if (saving) return;
     saving = true;
     try {
-      await ApiUtil.put({
-        path: '/api/panel/countdown-timer/config',
+      await api.panel.put({
+        path: '/config',
         body: config,
       });
       addon.config = config;

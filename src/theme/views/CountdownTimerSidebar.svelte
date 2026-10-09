@@ -1,10 +1,10 @@
 {#if config?.enabled && config.displayMode === 'SIDEBAR'}
-  <div class="rounded-3 overflow-hidden position-relative" style="{containerStyle}">
+  <div class="countdown-timer-countdown-timer-sidebar rounded-3 overflow-hidden position-relative" style="{containerStyle}">
 
     {#if config.backgroundImage}
       <div
         class="position-absolute top-0 start-0 w-100 h-100"
-        style="background-image: url(/api/countdown-timer/background/{config.backgroundImage}); background-size: cover; background-position: center; z-index: 0; {config.theme === 'BLUR' ? 'filter: blur(6px); transform: scale(1.1);' : ''}">
+        style="background-image: url(/api/plugins/pano-plugin-countdown-timer/background/{config.backgroundImage}); background-size: cover; background-position: center; z-index: 0; {config.theme === 'BLUR' ? 'filter: blur(6px); transform: scale(1.1);' : ''}">
       </div>
       <div
         class="position-absolute top-0 start-0 w-100 h-100"
@@ -16,14 +16,14 @@
       {#if config.showLogo && siteInfo}
         <div class="mb-2">
           <img
-            src="/api/websiteLogo?hash={siteInfo.websiteLogoHash}"
+            src="/api/v1/website-logo?hash={siteInfo.websiteLogoHash}"
             alt={siteInfo.websiteName}
             style="max-height: {logoHeight}px; max-width: {logoHeight * 2.5}px; object-fit: contain;" />
         </div>
       {/if}
 
       {#if config.title}
-        <h6 class="fw-bold mb-2">{config.title}</h6>
+        <h6 class="countdown-timer-countdown-timer-sidebar__title fw-bold mb-2">{config.title}</h6>
       {/if}
 
       {#if !ended}
@@ -57,10 +57,19 @@
   </div>
 {/if}
 
+<script module>
+  // The countdown widget in the home sidebar; a theme can place it with <PluginBlock id="countdown-timer:CountdownTimerSidebar" />.
+  export const view = { sidebar: 'home', id: 'countdown-timer', priority: 90, block: true };
+</script>
+
 <script>
     import {page} from '@panomc/sdk/svelte';
-    import {_} from '../../../main';
+    import { derived } from 'svelte/store';
+    import { _ as i18n } from '@panomc/sdk/utils/language';
     import CountdownDisplay from './CountdownDisplay.svelte';
+
+    // plugin translations: $_('key') reads plugins.pano-plugin-countdown-timer.key
+    const _ = derived(i18n, ($_fn) => (key, options) => $_fn(`plugins.pano-plugin-countdown-timer.${key}`, options));
 
     const browser = typeof window !== 'undefined';
 

@@ -1,0 +1,50 @@
+[
+  {
+    "method": "GET",
+    "old": "/api/countdown-timer/background/:fileName",
+    "new": "/api/plugins/pano-plugin-countdown-timer/background/:fileName",
+    "relative": "/plugins/pano-plugin-countdown-timer/background/:fileName",
+    "class": "GetCountdownTimerBackgroundAPI",
+    "file": "src/main/kotlin/com/panomc/plugins/countdowntimer/routes/GetCountdownTimerBackgroundAPI.kt"
+  },
+  {
+    "method": "GET",
+    "old": "/api/countdown-timer/config",
+    "new": "/api/plugins/pano-plugin-countdown-timer/config",
+    "relative": "/plugins/pano-plugin-countdown-timer/config",
+    "class": "GetCountdownTimerConfigAPI",
+    "file": "src/main/kotlin/com/panomc/plugins/countdowntimer/routes/GetCountdownTimerConfigAPI.kt"
+  },
+  {
+    "method": "DELETE",
+    "old": "/api/panel/countdown-timer/background",
+    "new": "/api/plugins/pano-plugin-countdown-timer/panel/background",
+    "relative": "/plugins/pano-plugin-countdown-timer/panel/background",
+    "class": "PanelDeleteBackgroundAPI",
+    "file": "src/main/kotlin/com/panomc/plugins/countdowntimer/routes/panel/PanelDeleteBackgroundAPI.kt"
+  },
+  {
+    "method": "POST",
+    "old": "/api/panel/countdown-timer/background",
+    "new": "/api/plugins/pano-plugin-countdown-timer/panel/background",
+    "relative": "/plugins/pano-plugin-countdown-timer/panel/background",
+    "class": "PanelUploadBackgroundAPI",
+    "file": "src/main/kotlin/com/panomc/plugins/countdowntimer/routes/panel/PanelUploadBackgroundAPI.kt"
+  },
+  {
+    "method": "GET",
+    "old": "/api/panel/countdown-timer/config",
+    "new": "/api/plugins/pano-plugin-countdown-timer/panel/config",
+    "relative": "/plugins/pano-plugin-countdown-timer/panel/config",
+    "class": "PanelGetCountdownTimerConfigAPI",
+    "file": "src/main/kotlin/com/panomc/plugins/countdowntimer/routes/panel/PanelGetCountdownTimerConfigAPI.kt"
+  },
+  {
+    "method": "PUT",
+    "old": "/api/panel/countdown-timer/config",
+    "new": "/api/plugins/pano-plugin-countdown-timer/panel/config",
+    "relative": "/plugins/pano-plugin-countdown-timer/panel/config",
+    "class": "PanelUpdateCountdownTimerConfigAPI",
+    "file": "src/main/kotlin/com/panomc/plugins/countdowntimer/routes/panel/PanelUpdateCountdownTimerConfigAPI.kt"
+  }
+]

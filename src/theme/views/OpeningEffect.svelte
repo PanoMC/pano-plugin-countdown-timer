@@ -1,9 +1,12 @@
 <!-- Opening celebration effects when countdown ends -->
 {#if active && effectType !== 'NONE'}
-  <div class="opening-effect-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; pointer-events: none; overflow: hidden;">
+  <div class="countdown-timer-opening-effect" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; pointer-events: none; overflow: hidden;">
     {#each particles as p}
       <div
-        class="particle particle-{effectType.toLowerCase()}"
+        class="countdown-timer-opening-effect__particle"
+        class:countdown-timer-opening-effect__particle-confetti={isConfetti}
+        class:countdown-timer-opening-effect__particle-fireworks={isFireworks}
+        class:countdown-timer-opening-effect__particle-sparkle={isSparkle}
         style="
           left: {p.x}%;
           top: {p.startY}%;
@@ -31,6 +34,11 @@
   const COLORS_SPARKLE = ['#ffd700', '#ffffff', '#fffacd', '#f0e68c', '#ffdf00', '#fafad2'];
 
   let particles = $state([]);
+
+  // which particle class the CSS draws (one literal class directive per effect)
+  let isConfetti = $derived(effectType === 'CONFETTI');
+  let isFireworks = $derived(effectType === 'FIREWORKS');
+  let isSparkle = $derived(effectType === 'SPARKLE');
 
   function generateParticles() {
     if (!browser) return;
@@ -104,21 +112,21 @@
 </script>
 
 <style>
-  .particle {
+  .countdown-timer-opening-effect__particle {
     position: absolute;
     will-change: transform, opacity;
   }
 
-  .particle-confetti {
+  .countdown-timer-opening-effect__particle-confetti {
     width: var(--size);
     height: calc(var(--size) * 0.6);
     background: var(--color);
     border-radius: 2px;
-    animation: confetti-fall var(--duration) var(--delay) ease-in forwards;
+    animation: countdown-timer-confetti-fall var(--duration) var(--delay) ease-in forwards;
     opacity: 0;
   }
 
-  @keyframes confetti-fall {
+  @keyframes countdown-timer-confetti-fall {
     0% {
       opacity: 1;
       transform: translateY(0) translateX(0) rotate(var(--rotation));
@@ -129,17 +137,17 @@
     }
   }
 
-  .particle-fireworks {
+  .countdown-timer-opening-effect__particle-fireworks {
     width: var(--size);
     height: var(--size);
     background: var(--color);
     border-radius: 50%;
     box-shadow: 0 0 6px var(--color), 0 0 12px var(--color);
-    animation: firework-burst var(--duration) var(--delay) ease-out forwards;
+    animation: countdown-timer-firework-burst var(--duration) var(--delay) ease-out forwards;
     opacity: 0;
   }
 
-  @keyframes firework-burst {
+  @keyframes countdown-timer-firework-burst {
     0% {
       opacity: 1;
       transform: translateX(0) translateY(0) scale(0.3);
@@ -154,17 +162,17 @@
     }
   }
 
-  .particle-sparkle {
+  .countdown-timer-opening-effect__particle-sparkle {
     width: var(--size);
     height: var(--size);
     background: var(--color);
     border-radius: 50%;
     box-shadow: 0 0 4px var(--color), 0 0 8px var(--color), 0 0 16px var(--color);
-    animation: sparkle-twinkle var(--duration) var(--delay) ease-in-out 3 forwards;
+    animation: countdown-timer-sparkle-twinkle var(--duration) var(--delay) ease-in-out 3 forwards;
     opacity: 0;
   }
 
-  @keyframes sparkle-twinkle {
+  @keyframes countdown-timer-sparkle-twinkle {
     0%, 100% {
       opacity: 0;
       transform: scale(0.3);

@@ -10,14 +10,14 @@ import com.panomc.plugins.countdowntimer.permission.ManageCountdownTimerPermissi
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.validation.ValidationHandler
-import io.vertx.ext.web.validation.builder.ValidationHandlerBuilder
+import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
 
 @Endpoint
 class PanelGetCountdownTimerConfigAPI(
     private val plugin: CountdownTimerPlugin,
 ) : PanelApi() {
-    override val paths = listOf(Path("/api/panel/countdown-timer/config", RouteType.GET))
+    override val paths = listOf(Path("/config", RouteType.GET))
 
     private val authProvider by lazy {
         plugin.applicationContext.getBean(AuthProvider::class.java)

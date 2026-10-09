@@ -16,7 +16,7 @@ import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.BodyHandler
 import io.vertx.ext.web.validation.RequestPredicate
 import io.vertx.ext.web.validation.ValidationHandler
-import io.vertx.ext.web.validation.builder.ValidationHandlerBuilder
+import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
 import java.io.File
 
@@ -24,7 +24,7 @@ import java.io.File
 class PanelUploadBackgroundAPI(
     private val plugin: CountdownTimerPlugin,
 ) : PanelApi() {
-    override val paths = listOf(Path("/api/panel/countdown-timer/background", RouteType.POST))
+    override val paths = listOf(Path("/background", RouteType.POST))
 
     private val authProvider by lazy {
         plugin.applicationContext.getBean(AuthProvider::class.java)
