@@ -360,7 +360,7 @@
             "$ref": "#/components/responses/Error503"
           }
         },
-        "summary": "The countdown settings: end date, texts, colours and where the countdown shows.",
+        "summary": "The countdown settings: end date, texts, colors and where the countdown shows.",
         "tags": [
           "countdown-timer"
         ],

@@ -21,7 +21,7 @@ class GetCountdownTimerConfigAPI(
     override val paths = listOf(Path("/config", RouteType.GET))
 
     override val doc = EndpointDoc(
-        summary = "The countdown settings: end date, texts, colours and where the countdown shows.",
+        summary = "The countdown settings: end date, texts, colors and where the countdown shows.",
         tag = "countdown-timer",
         response = objectSchema()
             .requiredProperty("enabled", booleanSchema())
