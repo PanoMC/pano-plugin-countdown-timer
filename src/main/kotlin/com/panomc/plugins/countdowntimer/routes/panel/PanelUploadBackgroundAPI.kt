@@ -11,6 +11,7 @@ import com.panomc.plugins.countdowntimer.config.CountdownTimerConfig
 import com.panomc.plugins.countdowntimer.log.UpdatedCountdownTimerConfigLog
 import com.panomc.plugins.countdowntimer.permission.ManageCountdownTimerPermission
 import com.panomc.plugins.countdowntimer.util.BackgroundImageFiles
+import com.panomc.plugins.countdowntimer.util.ImageSniffer
 import io.vertx.core.Handler
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.RoutingContext
@@ -75,6 +76,9 @@ class PanelUploadBackgroundAPI(
             throw BadRequest()
         }
 
+        // The stored extension comes from the file's real content, never from the client's file name.
+        val extension = ImageSniffer.detectExtension(File(fileUpload.uploadedFileName())) ?: throw BadRequest()
+
         // Delete old background if exists
         val oldImage = configManager.config.backgroundImage
         if (oldImage.isNotBlank()) {
@@ -85,7 +89,6 @@ class PanelUploadBackgroundAPI(
         }
 
         // Save new file
-        val extension = fileUpload.fileName().split(".").last()
         val fileName = "bg-${System.currentTimeMillis()}.$extension"
         val destFile = File(plugin.uploadsDir, fileName)
 

@@ -6,7 +6,6 @@ import com.panomc.platform.model.Api
 import com.panomc.platform.model.Path
 import com.panomc.platform.model.Result
 import com.panomc.platform.model.RouteType
-import com.panomc.platform.util.MimeTypeUtil
 import com.panomc.plugins.countdowntimer.CountdownTimerPlugin
 import com.panomc.plugins.countdowntimer.config.CountdownTimerConfig
 import io.vertx.ext.web.RoutingContext
@@ -16,6 +15,7 @@ import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
 import io.vertx.json.schema.common.dsl.Schemas.stringSchema
 import com.panomc.plugins.countdowntimer.util.BackgroundImageFiles
+import com.panomc.plugins.countdowntimer.util.ImageSniffer
 import com.panomc.platform.schema.EndpointDoc
 import io.vertx.json.schema.common.dsl.Schemas.*
 import com.panomc.platform.error.NotFound
@@ -64,10 +64,17 @@ class GetCountdownTimerBackgroundAPI(
             return null
         }
 
-        val mimeType = MimeTypeUtil.getMimeTypeFromFileName(file.absolutePath)
+        val mimeType = ImageSniffer.mimeTypeOf(file.extension)
+
+        if (mimeType == null) {
+            context.response().setStatusCode(404).end()
+            return null
+        }
 
         val response = context.response()
         response.putHeader("Content-Type", mimeType)
+        response.putHeader("X-Content-Type-Options", "nosniff")
+        response.putHeader("Content-Security-Policy", "default-src 'none'; sandbox")
         response.putHeader("Cache-Control", "public, max-age=$CACHE_TTL_SECONDS, immutable")
 
         try {
