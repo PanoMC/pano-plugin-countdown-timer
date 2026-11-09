@@ -9,12 +9,12 @@ import com.panomc.plugins.countdowntimer.CountdownTimerPlugin
 import com.panomc.plugins.countdowntimer.config.CountdownTimerConfig
 import com.panomc.plugins.countdowntimer.log.UpdatedCountdownTimerConfigLog
 import com.panomc.plugins.countdowntimer.permission.ManageCountdownTimerPermission
+import com.panomc.plugins.countdowntimer.util.BackgroundImageFiles
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.validation.ValidationHandler
 import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
-import java.io.File
 
 @Endpoint
 class PanelDeleteBackgroundAPI(
@@ -43,8 +43,8 @@ class PanelDeleteBackgroundAPI(
 
         val oldImage = configManager.config.backgroundImage
         if (oldImage.isNotBlank()) {
-            val oldFile = File(plugin.uploadsDir, oldImage)
-            if (oldFile.exists()) {
+            val oldFile = BackgroundImageFiles.resolve(plugin.uploadsDir, oldImage)
+            if (oldFile != null && oldFile.exists()) {
                 oldFile.delete()
             }
         }

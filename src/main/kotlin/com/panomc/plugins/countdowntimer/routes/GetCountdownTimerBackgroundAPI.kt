@@ -15,7 +15,7 @@ import com.panomc.platform.schema.dsl.Parameters.param
 import com.panomc.platform.schema.dsl.ValidationHandlerBuilder
 import io.vertx.json.schema.SchemaRepository
 import io.vertx.json.schema.common.dsl.Schemas.stringSchema
-import java.io.File
+import com.panomc.plugins.countdowntimer.util.BackgroundImageFiles
 import com.panomc.platform.schema.EndpointDoc
 import io.vertx.json.schema.common.dsl.Schemas.*
 import com.panomc.platform.error.NotFound
@@ -57,9 +57,9 @@ class GetCountdownTimerBackgroundAPI(
             return null
         }
 
-        val file = File(plugin.uploadsDir, fileName)
+        val file = BackgroundImageFiles.resolve(plugin.uploadsDir, fileName)
 
-        if (!file.exists()) {
+        if (file == null || !file.exists()) {
             context.response().setStatusCode(404).end()
             return null
         }

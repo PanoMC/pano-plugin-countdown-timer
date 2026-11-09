@@ -49,6 +49,7 @@ class PanelUpdateCountdownTimerConfigAPI(
                         .optionalProperty("textColor", stringSchema())
                         .optionalProperty("gradientStart", stringSchema())
                         .optionalProperty("gradientEnd", stringSchema())
+                        // Ignored: the background image is managed by the upload / delete routes.
                         .optionalProperty("backgroundImage", stringSchema())
                         .optionalProperty("showLogo", booleanSchema())
                         .optionalProperty("logoSize", stringSchema())
@@ -70,6 +71,10 @@ class PanelUpdateCountdownTimerConfigAPI(
         authProvider.requirePermission(ManageCountdownTimerPermission(), context)
 
         val body = context.body().asJsonObject()
+
+        // The background image is only set by the upload and delete routes, never from this body.
+        body.put("backgroundImage", configManager.config.backgroundImage)
+
         configManager.saveConfig(body)
 
         val userId = authProvider.getUserIdFromRoutingContext(context)
