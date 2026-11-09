@@ -63,7 +63,8 @@ class GetCountdownTimerConfigAPI(
         // Auto-disable if timer has ended and HIDE action is configured
         if (config.enabled && config.endDate > 0 && config.endDate <= System.currentTimeMillis()) {
             if (config.actions.contains(TimerAction.HIDE)) {
-                val updateBody = JsonObject().put("enabled", false)
+                // Merge into the current config, a single-key save would reset every other setting.
+                val updateBody = JsonObject.mapFrom(config).put("enabled", false)
                 configManager.saveConfig(updateBody)
 
                 // Return updated config with enabled = false

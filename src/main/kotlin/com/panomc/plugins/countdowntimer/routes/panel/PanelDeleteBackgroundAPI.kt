@@ -49,7 +49,7 @@ class PanelDeleteBackgroundAPI(
             }
         }
 
-        val updateBody = JsonObject().put("backgroundImage", "")
+        val updateBody = JsonObject.mapFrom(configManager.config).put("backgroundImage", "")
         configManager.saveConfig(updateBody)
 
         val userId = authProvider.getUserIdFromRoutingContext(context)

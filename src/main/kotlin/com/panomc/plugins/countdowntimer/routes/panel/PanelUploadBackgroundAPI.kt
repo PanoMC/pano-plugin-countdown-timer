@@ -95,7 +95,7 @@ class PanelUploadBackgroundAPI(
         File(fileUpload.uploadedFileName()).copyTo(destFile, true)
 
         // Update config
-        val updateBody = JsonObject().put("backgroundImage", fileName)
+        val updateBody = JsonObject.mapFrom(configManager.config).put("backgroundImage", fileName)
         configManager.saveConfig(updateBody)
 
         // Log activity
