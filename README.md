@@ -13,7 +13,8 @@
 
 Countdown Timer shows a live countdown to your next big moment, like a server launch, a new season or an event. Show it as a full-screen cover, on its own page or as a small box on your home page. When the time is up, it hides by itself and your website is back to normal.
 
-## ✨ Features
+<h3 align="center">Features</h3>
+
 - ⏳ **Live countdown**: Days, hours, minutes and seconds tick down in real time.
 - 🖥️ **Three ways to show it**: A full-screen cover, its own page or a box on your home page.
 - 🎨 **Five looks**: Dark, light, blur, minimal or gradient, plus five counter styles.
@@ -22,20 +23,24 @@ Countdown Timer shows a live countdown to your next big moment, like a server la
 - 🔓 **Opens by itself**: When the countdown ends, the cover hides and your site is open again.
 - 🔑 **Admins stay in**: The login page always works, and visitors can be allowed to skip the cover.
 
-## 📸 Screenshots
+<h3 align="center">Screenshots</h3>
+
 <p align="center"><img src=".github/assets/sidebar.png" alt="Or show it as a small countdown box on your home page." width="440" /></p>
 <p align="center"><i>Or show it as a small countdown box on your home page.</i></p>
 
 <p align="center"><img src=".github/assets/panel.png" alt="Set the date, display mode and look from the panel." width="900" /></p>
 <p align="center"><i>Set the date, display mode and look from the panel.</i></p>
 
-## 🚀 Get started
+<h3 align="center">Get started</h3>
+
 1. Open your Pano panel and go to **Addons**.
 2. Find **Countdown Timer** and click **Install**.
 3. Open the addon's **Settings** tab, pick your end date and display mode, switch it on and click **Save**.
 
-## 💬 Support
+<h3 align="center">Support</h3>
+
 Questions or ideas? Join our [Discord](https://panomc.com/discord) or visit [panomc.com](https://panomc.com).
 
-## 📄 License
+<h3 align="center">License</h3>
+
 Released under the MIT License.
