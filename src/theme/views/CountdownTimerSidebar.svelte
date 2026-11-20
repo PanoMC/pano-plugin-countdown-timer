@@ -18,12 +18,12 @@
           <img
             src="/api/v1/website-logo?hash={siteInfo.websiteLogoHash}"
             alt={siteInfo.websiteName}
-            style="max-height: {logoHeight}px; max-width: {logoHeight * 2.5}px; object-fit: contain;" />
+            style="max-height: {logoHeight}px; max-width: min({logoHeight * 2.5}px, 100%); object-fit: contain;" />
         </div>
       {/if}
 
       {#if config.title}
-        <h6 class="countdown-timer-countdown-timer-sidebar__title fw-bold mb-2">{config.title}</h6>
+        <h6 class="countdown-timer-countdown-timer-sidebar__title fw-bold mb-2" style="overflow-wrap: anywhere;">{config.title}</h6>
       {/if}
 
       {#if !ended}
@@ -50,7 +50,7 @@
       {#if config.showServerIp && siteInfo?.ipAddress}
         <div class="mt-2" style="opacity: 0.7;">
           <small style="font-size: 0.7rem; letter-spacing: 0.5px;">{$_('timer.server-ip')}</small>
-          <div class="fw-bold" style="font-size: 0.85rem;">{siteInfo.ipAddress}</div>
+          <div class="fw-bold" style="font-size: 0.85rem; overflow-wrap: anywhere;">{siteInfo.ipAddress}</div>
         </div>
       {/if}
     </div>

@@ -1,8 +1,8 @@
 {#if showCover}
   <div
     data-countdown-cover
-    class="countdown-timer-countdown-timer-cover vw-100 vh-100 position-fixed top-0 start-0 text-center"
-    style="{coverStyle} z-index: 99999; color: {config.textColor || '#ffffff'};">
+    class="countdown-timer-countdown-timer-cover position-fixed text-center"
+    style="{coverStyle} inset: 0; z-index: 99999; color: {config.textColor || '#ffffff'};">
 
     {#if config.backgroundImage}
       <div
@@ -11,25 +11,32 @@
       </div>
     {/if}
 
-    <!-- Logo: pinned to top area -->
-    {#if config.showLogo && siteInfo}
-      <div class="position-absolute w-100 d-flex justify-content-center" style="top: 5%; z-index: 1;">
+    <!-- Three rows: logo on top, counter in the middle, admin link at the bottom. The outer rows share the free
+         space, so the counter stays centered while it fits; on a short or narrow screen nothing overlaps and the
+         cover scrolls instead. -->
+    <div
+      class="countdown-timer-countdown-timer-cover__layout w-100 h-100"
+      style="position: relative; z-index: 1; display: grid; grid-template-rows: 1fr auto 1fr; overflow-y: auto; overscroll-behavior: contain; padding: 1rem;">
+
+    <!-- Logo: top row -->
+    <div class="countdown-timer-countdown-timer-cover__logo d-flex justify-content-center align-items-start" style="padding-top: {config.coverDismissable ? 'max(5vh, 3.5rem)' : 'max(5vh, 1rem)'}; padding-bottom: 1rem;">
+      {#if config.showLogo && siteInfo}
         <img
           src="/api/v1/website-logo?hash={siteInfo.websiteLogoHash}"
           alt={siteInfo.websiteName}
-          style="max-height: {logoHeight}px; max-width: {logoHeight * 2.5}px; object-fit: contain;" />
-      </div>
-    {/if}
+          style="max-height: min({logoHeight}px, 30vh); max-width: min({logoHeight * 2.5}px, 100%); object-fit: contain;" />
+      {/if}
+    </div>
 
-    <!-- Counter: always vertically & horizontally centered -->
-    <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100 p-4" style="position: relative; z-index: 1;">
-      <div style="max-width: 700px;">
+    <!-- Counter: middle row -->
+    <div class="countdown-timer-countdown-timer-cover__body d-flex flex-column align-items-center justify-content-center w-100">
+      <div class="w-100" style="max-width: 700px;">
         {#if config.title}
-          <h1 class="countdown-timer-countdown-timer-cover__title display-4 fw-bold mb-3">{config.title}</h1>
+          <h1 class="countdown-timer-countdown-timer-cover__title display-4 fw-bold mb-3" style="overflow-wrap: anywhere;">{config.title}</h1>
         {/if}
 
         {#if config.message}
-          <p class="lead mb-4" style="opacity: 0.8;">{config.message}</p>
+          <p class="countdown-timer-countdown-timer-cover__message lead mb-4" style="opacity: 0.8; overflow-wrap: anywhere;">{config.message}</p>
         {/if}
 
         <CountdownDisplay
@@ -45,10 +52,30 @@
         {#if config.showServerIp && siteInfo?.ipAddress}
           <div class="mt-3" style="opacity: 0.7;">
             <small class="text-uppercase" style="letter-spacing: 1px;">{$_('timer.server-ip')}</small>
-            <div class="fw-bold fs-5">{siteInfo.ipAddress}</div>
+            <div class="fw-bold fs-5" style="overflow-wrap: anywhere;">{siteInfo.ipAddress}</div>
           </div>
         {/if}
       </div>
+    </div>
+
+    <!-- Admin access info: bottom row -->
+    <div class="countdown-timer-countdown-timer-cover__footer d-flex justify-content-center align-items-end" style="padding-top: 1rem; padding-bottom: max(3vh, 0.5rem);">
+      {#if config.showAdminLogin !== false}
+        {#if isLoggedIn}
+          <a href="/panel" target="_blank" rel="noreferrer" style="color: inherit; opacity: 0.4; font-size: 0.8rem; text-decoration: none;"
+             onmouseenter={(e) => e.target.style.opacity = '0.8'}
+             onmouseleave={(e) => e.target.style.opacity = '0.4'}>
+            <i class="fa fa-cog me-1"></i>{$_('timer.admin-panel')}
+          </a>
+        {:else}
+          <a href="/login" style="color: inherit; opacity: 0.4; font-size: 0.8rem; text-decoration: none;"
+             onmouseenter={(e) => e.target.style.opacity = '0.8'}
+             onmouseleave={(e) => e.target.style.opacity = '0.4'}>
+            <i class="fa fa-sign-in me-1"></i>{$_('timer.admin-login')}
+          </a>
+        {/if}
+      {/if}
+    </div>
     </div>
 
     <!-- Dismiss button -->
@@ -63,24 +90,6 @@
       </button>
     {/if}
 
-    <!-- Admin access info at bottom -->
-    {#if config.showAdminLogin !== false}
-      <div class="position-absolute w-100 d-flex justify-content-center" style="bottom: 3%; z-index: 1;">
-        {#if isLoggedIn}
-          <a href="/panel" target="_blank" rel="noreferrer" style="color: inherit; opacity: 0.4; font-size: 0.8rem; text-decoration: none;"
-             onmouseenter={(e) => e.target.style.opacity = '0.8'}
-             onmouseleave={(e) => e.target.style.opacity = '0.4'}>
-            <i class="fa fa-cog me-1"></i>{$_('timer.admin-panel')}
-          </a>
-        {:else}
-          <a href="/login" style="color: inherit; opacity: 0.4; font-size: 0.8rem; text-decoration: none;"
-             onmouseenter={(e) => e.target.style.opacity = '0.8'}
-             onmouseleave={(e) => e.target.style.opacity = '0.4'}>
-            <i class="fa fa-sign-in me-1"></i>{$_('timer.admin-login')}
-          </a>
-        {/if}
-      </div>
-    {/if}
   </div>
 {/if}
 

@@ -1,5 +1,5 @@
 {#if config?.enabled && config.displayMode === 'PAGE'}
-  <div class="countdown-timer-countdown-timer-page container py-5">
+  <div class="countdown-timer-countdown-timer-page container py-4 py-md-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="rounded-4 overflow-hidden position-relative" style="{containerStyle}">
@@ -15,22 +15,22 @@
             </div>
           {/if}
 
-          <div class="text-center p-5 position-relative" style="z-index: 2; color: {config.textColor || '#ffffff'};">
+          <div class="text-center p-3 p-sm-4 p-md-5 position-relative" style="z-index: 2; color: {config.textColor || '#ffffff'};">
             {#if config.showLogo && siteInfo}
               <div class="mb-4">
                 <img
                   src="/api/v1/website-logo?hash={siteInfo.websiteLogoHash}"
                   alt={siteInfo.websiteName}
-                  style="max-height: {logoHeight}px; max-width: {logoHeight * 2.5}px; object-fit: contain;" />
+                  style="max-height: {logoHeight}px; max-width: min({logoHeight * 2.5}px, 100%); object-fit: contain;" />
               </div>
             {/if}
 
             {#if config.title}
-              <h1 class="countdown-timer-countdown-timer-page__title display-5 fw-bold mb-3">{config.title}</h1>
+              <h1 class="countdown-timer-countdown-timer-page__title display-5 fw-bold mb-3" style="overflow-wrap: anywhere;">{config.title}</h1>
             {/if}
 
             {#if config.message}
-              <p class="lead mb-5" style="opacity: 0.8;">{config.message}</p>
+              <p class="lead mb-4 mb-md-5" style="opacity: 0.8; overflow-wrap: anywhere;">{config.message}</p>
             {/if}
 
             {#if !ended}
@@ -53,7 +53,7 @@
             {#if config.showServerIp && siteInfo?.ipAddress}
               <div class="mt-3" style="opacity: 0.7;">
                 <small class="text-uppercase" style="letter-spacing: 1px;">{$_('timer.server-ip')}</small>
-                <div class="fw-bold fs-5">{siteInfo.ipAddress}</div>
+                <div class="fw-bold fs-5" style="overflow-wrap: anywhere;">{siteInfo.ipAddress}</div>
               </div>
             {/if}
           </div>
