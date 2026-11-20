@@ -4,7 +4,14 @@
   "views": {
     "countdown-timer:CountdownDisplay": {
       "classes": [
-        "countdown-timer-countdown-display"
+        "countdown-timer-countdown-display",
+        "countdown-timer-countdown-display__circle",
+        "countdown-timer-countdown-display__digit",
+        "countdown-timer-countdown-display__label",
+        "countdown-timer-countdown-display__number",
+        "countdown-timer-countdown-display__row",
+        "countdown-timer-countdown-display__separator",
+        "countdown-timer-countdown-display__unit"
       ],
       "contract": 1,
       "hooks": [],
@@ -49,6 +56,11 @@
       "classes": [
         "countdown-timer-countdown-timer-cover",
         "countdown-timer-countdown-timer-cover__action",
+        "countdown-timer-countdown-timer-cover__body",
+        "countdown-timer-countdown-timer-cover__footer",
+        "countdown-timer-countdown-timer-cover__layout",
+        "countdown-timer-countdown-timer-cover__logo",
+        "countdown-timer-countdown-timer-cover__message",
         "countdown-timer-countdown-timer-cover__title"
       ],
       "contract": 1,
