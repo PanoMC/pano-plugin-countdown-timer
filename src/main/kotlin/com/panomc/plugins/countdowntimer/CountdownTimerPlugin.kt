@@ -13,8 +13,11 @@ class CountdownTimerPlugin : PanoPlugin() {
     override suspend fun onStart() {
         logger.info("Starting Countdown Timer Plugin...")
 
-        val configManager = PluginConfigManager(this, CountdownTimerConfig::class.java)
-        pluginBeanContext.beanFactory.registerSingleton(PluginConfigManager::class.java.name, configManager)
+        // A stop / start in the same context keeps the registered manager: registering it again would fail.
+        val beanFactory = pluginBeanContext.beanFactory
+        if (!beanFactory.containsSingleton(PluginConfigManager::class.java.name)) {
+            beanFactory.registerSingleton(PluginConfigManager::class.java.name, PluginConfigManager(this, CountdownTimerConfig::class.java))
+        }
 
         if (!uploadsDir.exists()) {
             uploadsDir.mkdirs()
