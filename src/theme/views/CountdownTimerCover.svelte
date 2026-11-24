@@ -31,13 +31,9 @@
     <!-- Counter: middle row -->
     <div class="countdown-timer-countdown-timer-cover__body d-flex flex-column align-items-center justify-content-center w-100">
       <div class="w-100" style="max-width: 700px;">
-        {#if config.title}
-          <h1 class="countdown-timer-countdown-timer-cover__title display-4 fw-bold mb-3" style="overflow-wrap: anywhere;">{config.title}</h1>
-        {/if}
+        <h1 class="countdown-timer-countdown-timer-cover__title display-4 fw-bold mb-3" style="overflow-wrap: anywhere;">{config.title || $_('timer.default-title')}</h1>
 
-        {#if config.message}
-          <p class="countdown-timer-countdown-timer-cover__message lead mb-4" style="opacity: 0.8; overflow-wrap: anywhere;">{config.message}</p>
-        {/if}
+        <p class="countdown-timer-countdown-timer-cover__message lead mb-4" style="opacity: 0.8; overflow-wrap: anywhere;">{config.message || $_('timer.default-message')}</p>
 
         <CountdownDisplay
           {days} {hours} {minutes} {seconds}
@@ -85,7 +81,7 @@
         class="countdown-timer-countdown-timer-cover__action position-absolute btn"
         style="top: 15px; right: 15px; z-index: 10; color: {config.textColor || '#ffffff'}; font-size: 1.5rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer;"
         use:dismissAction
-        aria-label="Close">
+        aria-label={$_('timer.close')}>
         <i class="fa fa-times"></i>
       </button>
     {/if}

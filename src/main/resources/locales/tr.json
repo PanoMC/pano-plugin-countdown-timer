@@ -1,6 +1,6 @@
 {
   "settings": {
-    "title": "Geri Sayım Zamanlayıcı Ayarları",
+    "title": "Geri Sayım Zamanlayıcısı Ayarları",
     "enabled": "Geri Sayımı Etkinleştir",
     "enabled-desc": "Etkinleştirildiğinde, geri sayım zamanlayıcısı ziyaretçilere gösterilir.",
     "countdown-title": "Başlık",
@@ -12,7 +12,7 @@
     "end-date-desc": "Geri sayımın sona erdiği tam tarih ve saat (saniye dahil).",
     "quick-min": "dk",
     "quick-hour": "sa",
-    "quick-day": "gn",
+    "quick-day": "g",
     "display-section": "Görüntüleme Modu",
     "display-mode": "Görüntüleme Modu",
     "display-mode-desc": "Geri sayım zamanlayıcısının web sitesinde nasıl gösterileceği.",
@@ -21,9 +21,9 @@
     "display-sidebar": "Kenar Çubuğu Bileşeni",
     "cover-info": "Kapak modu, ziyaretçiler için tüm web sitesini engeller. Yöneticilerin giriş yapabilmesi için giriş sayfası her zaman erişilebilir durumdadır.",
     "show-admin-login": "Yönetici Giriş Bağlantısını Göster",
-    "show-admin-login-desc": "Kapağın altında yönetici giriş sayfasına bir bağlantı görüntüle.",
+    "show-admin-login-desc": "Kapağın altında yönetici giriş sayfasına bir bağlantı gösterir.",
     "cover-dismissable": "Kapatmaya İzin Ver",
-    "cover-dismissable-desc": "Ziyaretçilerin kapağı kapatıp siteyi gezebilmesine izin ver.",
+    "cover-dismissable-desc": "Ziyaretçilerin kapağı kapatıp siteyi gezmesine izin verir.",
     "cover-scope": "Kapak Kapsamı",
     "cover-scope-desc": "Kapağın nerede gösterileceğini seçin.",
     "cover-scope-all": "Tüm Sayfalar",
@@ -31,10 +31,10 @@
     "page-path": "Sayfa URL'si",
     "page-path-desc": "Geri sayım sayfasının erişilebilir olacağı URL yolu.",
     "page-path-info": "Geri sayım sayfası şu adreste erişilebilir olacak: {url}",
-    "show-in-nav": "Navigasyonda Göster",
-    "show-in-nav-desc": "Site gezinme çubuğunda geri sayım sayfasına bir bağlantı görüntüle.",
-    "nav-link-text": "Navigasyon Bağlantı Metni",
-    "nav-link-text-desc": "Navigasyon bağlantısı için özel metin. Geri sayım başlığını kullanmak için boş bırakın.",
+    "show-in-nav": "Menüde Göster",
+    "show-in-nav-desc": "Sitenin menüsünde geri sayım sayfasına bir bağlantı gösterir.",
+    "nav-link-text": "Menü Bağlantısı Metni",
+    "nav-link-text-desc": "Menü bağlantısı için özel metin. Geri sayım başlığını kullanmak için boş bırakın.",
     "appearance-section": "Görünüm",
     "theme": "Görsel Tema",
     "theme-desc": "Geri sayım görüntüsü için görsel stili seçin.",
@@ -60,7 +60,7 @@
     "bg-image-uploading": "Yükleniyor...",
     "server-info-section": "Sunucu Bilgileri",
     "show-logo": "Web Sitesi Logosunu Göster",
-    "show-logo-desc": "Geri sayımda web sitesi logosunu göster.",
+    "show-logo-desc": "Geri sayımda web sitesi logosunu gösterir.",
     "logo-size": "Logo Boyutu",
     "logo-size-desc": "Web sitesi logosu için görüntüleme boyutunu seçin.",
     "logo-size-small": "Küçük",
@@ -70,7 +70,7 @@
     "logo-size-huge": "Devasa",
     "logo-size-massive": "Maksimum",
     "show-server-ip": "Sunucu IP'sini Göster",
-    "show-server-ip-desc": "Geri sayımda Minecraft sunucu IP adresini göster.",
+    "show-server-ip-desc": "Geri sayımda Minecraft sunucusunun IP adresini gösterir.",
     "effects-section": "Açılış Efektleri",
     "opening-effect": "Açılış Efekti",
     "opening-effect-desc": "Geri sayım sıfıra ulaştığında bir kutlama efekti oynatın.",
@@ -80,7 +80,7 @@
     "effect-sparkle": "Parıltı ✨",
     "actions-section": "Zamanlayıcı Bittiğinde Yapılacak İşlemler",
     "action-hide": "Otomatik Gizle",
-    "action-hide-desc": "Geri sayımı otomatik olarak gizle ve normal site erişimini geri yükle."
+    "action-hide-desc": "Geri sayımı otomatik olarak gizler ve sitenin normal erişimini geri getirir."
   },
   "timer": {
     "days": "Gün",
@@ -95,7 +95,11 @@
     "server-ip": "Sunucu IP",
     "admin-panel": "Yönetim Paneli",
     "admin-login": "Yönetici Girişi",
-    "dismiss": "Geç"
+    "dismiss": "Geç",
+    "default-title": "Çok yakında açılıyoruz!",
+    "default-message": "Web sitemiz hazırlanıyor. Bizi takipte kalın!",
+    "close": "Kapat",
+    "nav-default": "Geri sayım"
   },
   "permissions": {
     "MANAGE_COUNTDOWN_TIMER": {

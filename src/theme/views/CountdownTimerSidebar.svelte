@@ -22,9 +22,7 @@
         </div>
       {/if}
 
-      {#if config.title}
-        <h6 class="countdown-timer-countdown-timer-sidebar__title fw-bold mb-2" style="overflow-wrap: anywhere;">{config.title}</h6>
-      {/if}
+      <h6 class="countdown-timer-countdown-timer-sidebar__title fw-bold mb-2" style="overflow-wrap: anywhere;">{config.title || $_('timer.default-title')}</h6>
 
       {#if !ended}
         <CountdownDisplay
@@ -37,9 +35,7 @@
           minsLabel={$_('timer.mins-short')}
           secsLabel={$_('timer.secs-short')} />
 
-        {#if config.message}
-          <small style="opacity: 0.75;">{config.message}</small>
-        {/if}
+        <small style="opacity: 0.75;">{config.message || $_('timer.default-message')}</small>
       {:else}
         <small>
           <i class="fa fa-check-circle me-1"></i>

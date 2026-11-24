@@ -87,7 +87,7 @@
     "hours": "Hours",
     "minutes": "Minutes",
     "seconds": "Seconds",
-    "days-short": "Days",
+    "days-short": "Day",
     "hours-short": "Hrs",
     "mins-short": "Min",
     "secs-short": "Sec",
@@ -95,7 +95,11 @@
     "server-ip": "Server IP",
     "admin-panel": "Admin Panel",
     "admin-login": "Admin Login",
-    "dismiss": "Skip"
+    "dismiss": "Skip",
+    "default-title": "We're launching soon!",
+    "default-message": "Our website is getting ready. Stay tuned!",
+    "close": "Close",
+    "nav-default": "Countdown"
   },
   "permissions": {
     "MANAGE_COUNTDOWN_TIMER": {

@@ -25,13 +25,9 @@
               </div>
             {/if}
 
-            {#if config.title}
-              <h1 class="countdown-timer-countdown-timer-page__title display-5 fw-bold mb-3" style="overflow-wrap: anywhere;">{config.title}</h1>
-            {/if}
+            <h1 class="countdown-timer-countdown-timer-page__title display-5 fw-bold mb-3" style="overflow-wrap: anywhere;">{config.title || $_('timer.default-title')}</h1>
 
-            {#if config.message}
-              <p class="lead mb-4 mb-md-5" style="opacity: 0.8; overflow-wrap: anywhere;">{config.message}</p>
-            {/if}
+            <p class="lead mb-4 mb-md-5" style="opacity: 0.8; overflow-wrap: anywhere;">{config.message || $_('timer.default-message')}</p>
 
             {#if !ended}
               <CountdownDisplay

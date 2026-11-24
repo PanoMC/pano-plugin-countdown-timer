@@ -1,5 +1,5 @@
 import {PanoPlugin, viewComponent} from '@panomc/sdk';
-import {derived} from 'svelte/store';
+import {derived, get} from 'svelte/store';
 import {_ as i18n} from '@panomc/sdk/utils/language';
 import { api } from '@panomc/sdk/plugin-api';
 import { showToast } from '@panomc/sdk/toasts';
@@ -80,7 +80,7 @@ export default class CountdownTimerPlugin extends PanoPlugin {
                 pano.ui.nav.site.editNavLinks((links) => {
                   links.push({
                     href: pagePath,
-                    text: config.navLinkText || config.title || 'Countdown',
+                    text: config.navLinkText || config.title || get(_)('timer.nav-default'),
                   });
                   return links;
                 });

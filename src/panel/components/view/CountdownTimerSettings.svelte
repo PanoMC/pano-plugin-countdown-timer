@@ -36,7 +36,8 @@
             class="form-control"
             id="ct-title"
             type="text"
-            bind:value={config.title} />
+            bind:value={config.title}
+            placeholder={$_('timer.default-title')} />
         </div>
       </div>
 
@@ -48,6 +49,7 @@
         </label>
         <div class="col-md-6">
           <textarea class="form-control" id="ct-message" rows="2" bind:value={config.message}
+            placeholder={$_('timer.default-message')}
           ></textarea>
         </div>
       </div>
@@ -205,7 +207,7 @@
                 id="ct-nav-link-text"
                 type="text"
                 bind:value={config.navLinkText}
-                placeholder={config.title || 'Countdown'} />
+                placeholder={config.title || $_('timer.nav-default')} />
             </div>
           </div>
         {/if}
@@ -315,7 +317,7 @@
             <div class="mb-2">
               <img
                 src="/api/plugins/pano-plugin-countdown-timer/background/{config.backgroundImage}"
-                alt="Background"
+                alt={$_('settings.bg-image')}
                 class="img-thumbnail"
                 style="max-height: 120px; object-fit: cover;" />
             </div>

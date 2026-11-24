@@ -5,8 +5,8 @@ import com.panomc.platform.api.config.PluginConfig
 class CountdownTimerConfig(
     val enabled: Boolean = false,
     val endDate: Long = 0,
-    val title: String = "We're launching soon!",
-    val message: String = "Our website is getting ready. Stay tuned!",
+    val title: String = "",
+    val message: String = "",
     val displayMode: DisplayMode = DisplayMode.COVER,
     val theme: CountdownTheme = CountdownTheme.DARK,
     val backgroundColor: String = "#000000",
